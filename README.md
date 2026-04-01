@@ -73,4 +73,26 @@ category_id (целое число)
 
 каждый ассет относится к одной категории, одна категория может содержать много ассетов, при вводе ассета категория должна выбираться из существующего списка категорий.
 
+## Используемые типы данных
 
+Текст:
+- category_name
+- description
+- uniqueness_type
+- asset_name
+- source_project
+
+Дата:
+- creation_date
+
+Целые числа:
+- category_id
+- detail_level
+- asset_id
+- polygon_count
+- material_count
+- production_hours
+
+Числа с фиксированной запятой:
+- average_file_size
+- asset_price
