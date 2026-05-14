@@ -144,3 +144,11 @@ FOREIGN KEY (category_id)
 REFERENCES asset_categories(category_id)
 ON DELETE RESTRICT
 ON UPDATE CASCADE
+```
+### SQL-скрипт и файл базы данных
+
+SQL-скрипт находится в файле `database.sql`.
+
+Готовая база данных SQLite находится в файле `game_assets1.db`.
+
+В таблицы добавлены примеры данных для категорий и игровых ассетов.
