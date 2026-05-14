@@ -96,3 +96,51 @@ category_id (целое число)
 Числа с фиксированной запятой:
 - average_file_size
 - asset_price
+
+## Шаг 2. Проектирование базы данных
+
+### 1. Выбранная СУБД
+
+SQLite.
+
+### 2. Схема базы данных
+
+Для хранения справочников используются две таблицы:
+
+1. `asset_categories` — категории игровых ассетов.
+2. `game_assets` — игровые ассеты.
+
+### Таблица `asset_categories`
+
+| Поле | Тип данных | Описание |
+|---|---|---|
+| `category_id` | INTEGER PRIMARY KEY AUTOINCREMENT | идентификатор категории |
+| `category_name` | TEXT NOT NULL | название категории |
+| `description` | TEXT NOT NULL | описание категории |
+| `uniqueness_type` | TEXT NOT NULL | тип использования ассетов |
+| `detail_level` | INTEGER NOT NULL | уровень детализации |
+| `average_file_size` | DECIMAL(10,2) NOT NULL | средний размер файла |
+
+### Таблица `game_assets`
+
+| Поле | Тип данных | Описание |
+|---|---|---|
+| `asset_id` | INTEGER PRIMARY KEY AUTOINCREMENT | идентификатор ассета |
+| `asset_name` | TEXT NOT NULL | название ассета |
+| `source_project` | TEXT NOT NULL | игра или проект |
+| `creation_date` | DATE NOT NULL | дата создания |
+| `polygon_count` | INTEGER NOT NULL | количество полигонов |
+| `material_count` | INTEGER NOT NULL | количество материалов |
+| `production_hours` | INTEGER NOT NULL | время создания |
+| `asset_price` | DECIMAL(10,2) NOT NULL | стоимость ассета |
+| `category_id` | INTEGER NOT NULL | ссылка на категорию |
+
+### Внешний ключ
+
+Поле `category_id` в таблице `game_assets` является внешним ключом и ссылается на поле `category_id` таблицы `asset_categories`.
+
+```sql
+FOREIGN KEY (category_id)
+REFERENCES asset_categories(category_id)
+ON DELETE RESTRICT
+ON UPDATE CASCADE
